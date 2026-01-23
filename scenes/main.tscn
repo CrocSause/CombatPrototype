@@ -1,0 +1,120 @@
+[gd_scene load_steps=15 format=3 uid="uid://bx50s6hl3ss6w"]
+
+[ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_4jvsj"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ongvw"]
+[ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="2_a2qfh"]
+[ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://assets/textures/grids/Purple/texture_09.png" id="3_8i2rj"]
+[ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="4_c0jmk"]
+[ext_resource type="PackedScene" uid="uid://btglnr1o7xenv" path="res://scenes/player.tscn" id="5_31y8b"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_galpx"]
+vertices = PackedVector3Array(-7.75, 0.379377, -11.75, -7, 0.379377, -12, -7, 0.379377, -499.5, -8.75, 0.379377, -9.5, -7.75, 0.379377, -11.75, -7, 0.379377, -499.5, -499.5, 0.379377, -499.5, -499.5, 0.379377, -9.5, -1.25, 0.379377, 2, 1.5, 0.379377, -0.25, 2.25, 0.379377, -2, -4.75, 0.379377, -10.75, -5.5, 0.379377, -8.5, -4, 0.379377, 0.75, -4.75, 0.379377, -10.75, 2.25, 0.379377, -2, 3.5, 0.379377, -1.75, 499.5, 0.379377, -0.5, 499.5, 0.379377, -499.5, -7, 0.379377, -499.5, -7, 0.379377, -499.5, -7, 0.379377, -12, -4.75, 0.379377, -10.75, 3.5, 0.379377, -1.75, 4, 0.379377, -0.5, 499.5, 0.379377, -0.5, -7, 2.37938, -9.25, -6.25, 2.37938, -9.25, -6, 2.37938, -9.75, -6.75, 2.37938, -10.75, -7.5, 2.37938, -10, -7, 0.379377, -10.25, -6.5, 0.379377, -9.5, -6.5, 0.379377, -10.25, -4, 0.379377, 0.75, -5.5, 0.379377, -8.5, -5.75, 0.379377, -8, -4, 0.379377, 0.75, -5.75, 0.379377, -8, -7, 0.379377, -8, -4.75, 0.379377, 1.25, -6, 0.379377, 4.25, -8.5, 0.379377, -8.75, -8.75, 0.379377, -9.5, -499.5, 0.379377, -9.5, -499.5, 0.379377, 4.25, -4.75, 0.379377, 1.25, -7, 0.379377, -8, -8.5, 0.379377, -8.75, -6, 0.379377, 4.25, 1.5, 0.379377, -0.25, -1.25, 0.379377, 2, -0.5, 0.379377, 2.5, 2, 0.379377, 0.5, -1.75, 0.379377, 5.75, -2.75, 0.379377, 6, -2.75, 0.379377, 499.5, 2, 0.379377, 0.5, -0.5, 0.379377, 2.5, -0.5, 0.379377, 3.25, 3.5, 0.379377, 0.75, 499.5, 0.379377, -0.5, 4, 0.379377, -0.5, 3.5, 0.379377, 0.75, 3.5, 0.379377, 0.75, -0.5, 0.379377, 3.25, -1.75, 0.379377, 5.75, -2.75, 0.379377, 499.5, 499.5, 0.379377, 499.5, 499.5, 0.379377, -0.5, -4.75, 3.37938, 3.75, -2.75, 3.37938, 5, -1.75, 3.37938, 3.25, -3.75, 3.37938, 2, -3.25, 0.379377, 4.5, -2.75, 0.379377, 4.5, -2.25, 0.379377, 3.5, -2.25, 0.379377, 3, -3.75, 0.379377, 2.5, -4.25, 0.379377, 3.5, -2.75, 0.379377, 499.5, -2.75, 0.379377, 6, -4.5, 0.379377, 5.5, -4.5, 0.379377, 5.5, -6, 0.379377, 4.25, -499.5, 0.379377, 4.25, -499.5, 0.379377, 499.5, -2.75, 0.379377, 499.5)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 13), PackedInt32Array(10, 13, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 19), PackedInt32Array(16, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(25, 24, 23), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 30), PackedInt32Array(28, 30, 29), PackedInt32Array(33, 32, 31), PackedInt32Array(36, 35, 34), PackedInt32Array(37, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 44), PackedInt32Array(44, 41, 45), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(53, 52, 50), PackedInt32Array(50, 52, 51), PackedInt32Array(56, 55, 54), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(63, 62, 61), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(67, 64, 69), PackedInt32Array(67, 69, 68), PackedInt32Array(73, 72, 70), PackedInt32Array(70, 72, 71), PackedInt32Array(75, 74, 76), PackedInt32Array(76, 74, 77), PackedInt32Array(77, 74, 79), PackedInt32Array(77, 79, 78), PackedInt32Array(82, 81, 80), PackedInt32Array(84, 83, 85), PackedInt32Array(85, 83, 86), PackedInt32Array(86, 83, 87)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7clc"]
+albedo_texture = ExtResource("1_4jvsj")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71k0k"]
+albedo_texture = ExtResource("2_a2qfh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ls6nd"]
+albedo_texture = ExtResource("3_8i2rj")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgovk"]
+albedo_texture = ExtResource("4_c0jmk")
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k0uhe"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_p3ygy"]
+sky_material = SubResource("ProceduralSkyMaterial_k0uhe")
+
+[sub_resource type="Environment" id="Environment_omwg4"]
+background_mode = 2
+sky = SubResource("Sky_p3ygy")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.670588, 0.701961, 0.74902, 1)
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_ongvw")
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="map"]
+navigation_mesh = SubResource("NavigationMesh_galpx")
+
+[node name="floor" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620623, 0)
+material_override = SubResource("StandardMaterial3D_d7clc")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="box" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(0.471397, 0, 0.881921, 0, 1, 0, -0.881921, 0, 0.471397, 2.77385, 0.442938, -0.600034)
+material_override = SubResource("StandardMaterial3D_71k0k")
+use_collision = true
+
+[node name="box2" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(0.471397, 0, 0.881921, 0, 1, 0, -0.881921, 0, 0.471397, -6.67987, 0.942938, -9.91935)
+material_override = SubResource("StandardMaterial3D_ls6nd")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="box3" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(0.471397, 0, 0.881921, 0, 1, 0, -0.881921, 0, 0.471397, -3.23936, 1.44294, 3.46037)
+material_override = SubResource("StandardMaterial3D_tgovk")
+use_collision = true
+size = Vector3(3, 3, 3)
+
+[node name="Player" parent="map/NavigationRegion3D" instance=ExtResource("5_31y8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817426, -0.120623, -0.529418)
+
+[node name="Spawns" type="Node3D" parent="map"]
+
+[node name="Spawn" type="Node3D" parent="map/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="Spawn2" type="Node3D" parent="map/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.83651, 0, -0.47604)
+
+[node name="Spawn3" type="Node3D" parent="map/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94181, 0, 11.577)
+
+[node name="Spawn4" type="Node3D" parent="map/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4267, 0, -0.110472)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="map"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="map"]
+environment = SubResource("Environment_omwg4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HitRect" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -164.0
+offset_top = -164.0
+offset_right = 1443.0
+offset_bottom = 803.0
+color = Color(0.717647, 0, 0.145098, 0.227451)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="player_hit" from="map/NavigationRegion3D/Player" to="." method="_on_player_player_hit"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
