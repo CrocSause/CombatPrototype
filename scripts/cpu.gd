@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
 @onready var anim_tree = $AnimationTree
 
-const SPEED = 4.0
+const SPEED = 3.5
 const ATTACK_RANGE = 1
 
 var player = null
@@ -51,11 +51,12 @@ func _hit_finished():
 		player.hit(dir)
 	
 func take_damage(amount: int):
+	state_machine.travel("head_hit_mixamo_com")
 	print("Damage: ", amount)
 	health -= amount
 	is_taking_damage = true
 	
-	state_machine.travel("head_hit_mixamo_com")
+	
 	
 	var hit_anim_duration = 1.4
 	await get_tree().create_timer(hit_anim_duration).timeout
