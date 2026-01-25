@@ -29,5 +29,7 @@ func _get_random_child(parent_node):
 func _on_enemy_spawn_timer_timeout():
 	var spawn_point = _get_random_child(spawns).global_position
 	instance = enemy.instantiate()
-	instance.position = spawn_point
+	
+	# Add the enemy first, THEN set its global position
 	navigation_region.add_child(instance)
+	instance.global_position = spawn_point 
