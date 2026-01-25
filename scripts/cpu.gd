@@ -52,6 +52,8 @@ func _ready():
 # Called every frame (typically 60 times per second)
 # Delta is the time elapsed since last frame
 func _physics_process(delta):
+	if player.is_dead:
+		return
 	# Reset velocity to zero at the start of each frame
 	# This prevents velocity from accumulating over time
 	velocity = Vector3.ZERO

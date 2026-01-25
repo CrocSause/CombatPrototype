@@ -3,6 +3,7 @@ extends Node3D
 @onready var hit_rect = $Control/HitRect
 @onready var spawns = $map/Spawns
 @onready var navigation_region = $map/NavigationRegion3D
+@onready var enemy_spawn_timer = $EnemySpawnTimer
 
 var enemy = load("res://scenes/cpu.tscn")
 var instance
@@ -33,3 +34,8 @@ func _on_enemy_spawn_timer_timeout():
 	# Add the enemy first, THEN set its global position
 	navigation_region.add_child(instance)
 	instance.global_position = spawn_point 
+
+func _on_player_player_died():
+	enemy_spawn_timer.stop()
+	print("YOU DIED")
+	get_tree().reload_current_scene()

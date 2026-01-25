@@ -19,6 +19,7 @@ const HIT_STAGGER = 8.0      # How much the player gets knocked back when hit
 
 # === STATE VARIABLES ===
 var is_attacking = false     # Tracks if player is currently in attack animation (prevents movement during attacks)
+var is_dead = false
 
 # Enum creates named constants for animation states (makes code more readable than using numbers)
 enum {IDLE, WALK, RUN, ATTACK}
@@ -26,6 +27,10 @@ var curAnim = IDLE           # Stores the current animation state
 
 # Signal that other nodes can listen to (e.g., UI to update health bar)
 signal player_hit
+signal player_died
+
+# Player health
+var health = 200
 
 # === ANIMATION BLENDING ===
 @export var blend_speed = 15 # How quickly animations transition between each other (higher = faster)
@@ -49,6 +54,8 @@ func _ready():
 # === INPUT HANDLING ===
 # Called whenever there's an input event (mouse move, key press, etc.)
 func _input(event):
+	if is_dead:
+		return
 	# Check if the event is mouse movement
 	if event is InputEventMouseMotion:
 		# HORIZONTAL ROTATION (left/right looking)
@@ -79,6 +86,9 @@ func _physics_process(delta):
 	
 	# Update animation blending
 	handle_animations(delta)
+	
+	if is_dead:
+		return
 	
 	# JUMPING
 	# is_action_just_pressed checks if key was pressed THIS frame (not held)
@@ -207,3 +217,8 @@ func hit(dir):
 	# Apply knockback by adding to velocity
 	# HIT_STAGGER controls how strong the knockback is
 	velocity += dir * HIT_STAGGER
+	health -= 20
+	print("Hit! Player health: ", health)
+	if health <= 0:
+		is_dead = true
+		emit_signal("player_died")
