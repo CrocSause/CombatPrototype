@@ -22,7 +22,7 @@ var is_attacking = false     # Tracks if player is currently in attack animation
 var is_dead = false
 
 # Enum creates named constants for animation states (makes code more readable than using numbers)
-enum {IDLE, WALK, RUN, ATTACK}
+enum {IDLE, WALK, RUN, ATTACK, DIE}
 var curAnim = IDLE           # Stores the current animation state
 
 # Signal that other nodes can listen to (e.g., UI to update health bar)
@@ -195,6 +195,9 @@ func handle_animations(delta):
 		ATTACK:
 			walk_val = lerpf(walk_val, 0, blend_speed * delta)
 			run_val = lerpf(run_val, 0, blend_speed * delta)
+		DIE:
+			walk_val = lerpf(walk_val, 0, blend_speed * delta)
+			run_val = lerpf(run_val, 0, blend_speed * delta)
 	
 	# Apply the calculated blend values to the AnimationTree
 	update_tree()
@@ -217,8 +220,10 @@ func hit(dir):
 	# Apply knockback by adding to velocity
 	# HIT_STAGGER controls how strong the knockback is
 	velocity += dir * HIT_STAGGER
-	health -= 20
+	health -= 100
 	print("Hit! Player health: ", health)
 	if health <= 0:
 		is_dead = true
+		curAnim = DIE
+		animation_tree["parameters/Die/blend_amount"] = 1.0
 		emit_signal("player_died")

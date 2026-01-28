@@ -1,9 +1,10 @@
 extends Node3D
 
-@onready var hit_rect = $Control/HitRect
+@onready var hit_rect = $UI/HitRect
 @onready var spawns = $map/Spawns
 @onready var navigation_region = $map/NavigationRegion3D
 @onready var enemy_spawn_timer = $EnemySpawnTimer
+@onready var death_screen = $UI/DeathScreen
 
 var enemy = load("res://scenes/cpu.tscn")
 var instance
@@ -38,4 +39,9 @@ func _on_enemy_spawn_timer_timeout():
 func _on_player_player_died():
 	enemy_spawn_timer.stop()
 	print("YOU DIED")
+	await get_tree().create_timer(7.0).timeout
+	death_screen.visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _on_button_pressed():
 	get_tree().reload_current_scene()
