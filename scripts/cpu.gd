@@ -23,6 +23,8 @@ var state_machine          # Reference to the AnimationTree's StateMachinePlayba
 var health = 30            # Enemy's current health points
 var is_taking_damage = false  # Prevents enemy from acting while playing hit animation
 
+signal enemy_died
+
 # === CONFIGURATION ===
 # @export makes this editable in the inspector
 # This is the node path to find the player in the scene tree
@@ -191,6 +193,8 @@ func take_damage(amount: int):
 		
 		# Wait 8 seconds for death animation to play
 		await get_tree().create_timer(8.0).timeout
+		
+		emit_signal("enemy_died")
 		
 		# Remove this enemy from the scene
 		# queue_free() safely deletes the node at the end of the frame

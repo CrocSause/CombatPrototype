@@ -15,7 +15,7 @@ extends CharacterBody3D
 const SPRINT_SPEED = 8.0    # How fast the player moves when sprinting
 const SPEED = 2.8            # Normal walking speed
 const JUMP_VELOCITY = 4.5    # Upward velocity applied when jumping
-const HIT_STAGGER = 8.0      # How much the player gets knocked back when hit
+const HIT_STAGGER = 16.0      # How much the player gets knocked back when hit
 
 # === STATE VARIABLES ===
 var is_attacking = false     # Tracks if player is currently in attack animation (prevents movement during attacks)
@@ -220,7 +220,7 @@ func hit(dir):
 	# Apply knockback by adding to velocity
 	# HIT_STAGGER controls how strong the knockback is
 	velocity += dir * HIT_STAGGER
-	health -= 100
+	health -= 20
 	print("Hit! Player health: ", health)
 	if health <= 0:
 		is_dead = true

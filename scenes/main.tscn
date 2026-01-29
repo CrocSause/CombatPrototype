@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bx50s6hl3ss6w"]
+[gd_scene load_steps=13 format=3 uid="uid://bx50s6hl3ss6w"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ongvw"]
 [ext_resource type="Texture2D" uid="uid://d3fa0mwxphep1" path="res://assets/models/enochs-hammer/textures/Image_1-Image_3_1@channels=G.png" id="2_uhr7d"]
 [ext_resource type="Texture2D" uid="uid://v14bpq1qy32c" path="res://assets/models/enochs-hammer/textures/Image_2_2.jpeg" id="3_6blu5"]
+[ext_resource type="Texture2D" uid="uid://dmh3g82c0sem" path="res://assets/models/T-Pose (1)-8997e8934c7dbfa7ca5fecd15ff69adc_ao_met_rough_Ch36_1001_Glossiness.png" id="5_5w8y4"]
 [ext_resource type="PackedScene" uid="uid://btglnr1o7xenv" path="res://scenes/player.tscn" id="5_31y8b"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_galpx"]
@@ -30,6 +31,8 @@ tonemap_mode = 2
 sdfgi_enabled = true
 glow_enabled = true
 fog_light_color = Color(0.670588, 0.701961, 0.74902, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_eglnm"]
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ongvw")
@@ -126,6 +129,29 @@ offset_top = 550.0
 offset_right = 735.0
 offset_bottom = 605.0
 text = "RESPAWN"
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 57.0
+max_value = 200.0
+value = 200.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_5w8y4")
+texture_progress = SubResource("ImageTexture_eglnm")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(0.721569, 0.0509804, 0.141176, 1)
+
+[node name="KillCount" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 30.0
+offset_right = 1140.0
+offset_bottom = 70.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
