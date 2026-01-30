@@ -7,6 +7,7 @@ extends Node3D
 @onready var death_screen = $UI/DeathScreen
 @onready var health_bar = $UI/HealthBar
 @onready var kill_count = $UI/KillCount
+@onready var win_screen = $UI/WinScreen
 
 var enemy = load("res://scenes/cpu.tscn")
 var instance
@@ -48,11 +49,16 @@ func _on_player_player_died():
 	health_bar.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _on_button_pressed():
-	get_tree().reload_current_scene()
-	
 func _on_enemy_died():
 	enemy_death += 1
 	kill_count.text = str(enemy_death)
+	if enemy_death >= 10:
+		win_screen.visible = true
+		health_bar.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+func _on_respawn_button_pressed():
+	get_tree().reload_current_scene()
 
+func _on_restart_button_pressed():
+	get_tree().reload_current_scene()
