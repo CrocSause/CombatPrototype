@@ -14,15 +14,16 @@ extends CharacterBody3D
 # === MOVEMENT CONSTANTS ===
 const SPRINT_SPEED = 8.0    # How fast the player moves when sprinting
 const SPEED = 2.8            # Normal walking speed
-const JUMP_VELOCITY = 4.5    # Upward velocity applied when jumping
+const JUMP_VELOCITY = 3.0    # Upward velocity applied when jumping
 const HIT_STAGGER = 16.0      # How much the player gets knocked back when hit
 
 # === STATE VARIABLES ===
 var is_attacking = false     # Tracks if player is currently in attack animation (prevents movement during attacks)
 var is_dead = false
+var is_jumping = false
 
 # Enum creates named constants for animation states (makes code more readable than using numbers)
-enum {IDLE, WALK, RUN, ATTACK, DIE}
+enum {IDLE, WALK, RUN, ATTACK, DIE, JUMP}
 var curAnim = IDLE           # Stores the current animation state
 
 # Signal that other nodes can listen to (e.g., UI to update health bar)
@@ -92,10 +93,24 @@ func _physics_process(delta):
 	
 	# JUMPING
 	# is_action_just_pressed checks if key was pressed THIS frame (not held)
-	# "ui_accept" is typically the spacebar or Enter key
-	# Only allow jumping when on the ground
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY  # Apply upward velocity
+	# Only allow jumping when on the ground and not attacking
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_attacking:
+		is_jumping = true
+		
+		curAnim = JUMP
+		animation_tree.set("parameters/TimeScale/scale", 0.25)
+		animation_tree["parameters/Jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE 
+
+		var anim_player = $visuals/Untitled/AnimationPlayer
+		var jump_length = anim_player.get_animation("jump/jump").length
+		
+		get_tree().create_timer(jump_length).timeout.connect(func():
+			is_jumping = false
+			curAnim = IDLE
+		)
+		await get_tree().create_timer(0.55).timeout
+		
+		velocity.y = JUMP_VELOCITY  # Apply upward velocity  
 	
 	# ATTACKING
 	if Input.is_action_just_pressed("attack") and not is_attacking:
@@ -196,6 +211,9 @@ func handle_animations(delta):
 			walk_val = lerpf(walk_val, 0, blend_speed * delta)
 			run_val = lerpf(run_val, 0, blend_speed * delta)
 		DIE:
+			walk_val = lerpf(walk_val, 0, blend_speed * delta)
+			run_val = lerpf(run_val, 0, blend_speed * delta)
+		JUMP:
 			walk_val = lerpf(walk_val, 0, blend_speed * delta)
 			run_val = lerpf(run_val, 0, blend_speed * delta)
 	
